@@ -1,0 +1,48 @@
+<div *ngIf="!processInstanceDetails">
+    {{ 'ADF_PROCESS_LIST.DETAILS.MESSAGES.NONE'|translate }}
+</div>
+
+<mat-card *ngIf="processInstanceDetails">
+
+
+<div class="container"
+fxLayout
+fxLayout.xs="column"
+fxLayoutAlign="center"
+fxLayoutGap="10px"
+fxLayoutGap.xs="0">
+<div class="item item-1" fxFlex="50%">
+<mat-card>
+<mat-card-content>
+<adf-process-instance-tasks 
+#processInstanceTasks
+[processInstanceDetails]="processInstanceDetails"
+(taskClick)="onTaskClick($event)">
+</adf-process-instance-tasks>
+</mat-card-content>
+</mat-card>
+</div>
+<div class="item item-2" fxFlex="20%" fxFlexOrder="3"> 
+<mat-card>
+<mat-card-content>
+<adf-process-instance-header
+#processInstanceHeader
+[processInstance]="processInstanceDetails">
+</adf-process-instance-header>
+</mat-card-content>
+</mat-card> 
+<mat-card>
+<mat-card-content>
+<adf-process-instance-comments #activitiComments
+[readOnly]="false"
+[processInstanceId]="processInstanceDetails.id">
+</adf-process-instance-comments>
+</mat-card-content>
+</mat-card>
+</div>
+<div class="item item-3" fxFlex></div>
+</div>
+
+
+</mat-card>
+
